@@ -8,12 +8,12 @@
   "author": "On Cue Home",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell.git"
+    "url": "git+https://github.com/oncuehome/homebridge-sonos-cloud-doorbell.git"
   },
   "bugs": {
-    "url": "https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell/issues"
+    "url": "https://github.com/oncuehome/homebridge-sonos-cloud-doorbell/issues"
   },
-  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell#readme",
+  "homepage": "https://github.com/oncuehome/homebridge-sonos-cloud-doorbell#readme",
   "engines": {
     "node": ">=18",
     "homebridge": ">=1.6.0"

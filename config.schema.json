@@ -1,0 +1,231 @@
+{
+  "pluginAlias": "SonosCloudDoorbell",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Plays chimes over active Sonos playback using the Cloud audioClip API \u2014 ducks and restores instead of dropping the stream. Add one entry under **Chimes** per switch you want in HomeKit (front door, gate, and so on), each with its own sound.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "clientId": {
+        "title": "Sonos Client ID",
+        "type": "string",
+        "required": true
+      },
+      "clientSecret": {
+        "title": "Sonos Client Secret",
+        "type": "string",
+        "required": true
+      },
+      "refreshToken": {
+        "title": "Refresh Token",
+        "type": "string",
+        "required": true,
+        "description": "Generate once with `npm run authorize` in the plugin folder."
+      },
+      "appId": {
+        "title": "App ID",
+        "type": "string",
+        "default": "com.oncuehome.doorbell"
+      },
+      "chimes": {
+        "title": "Chimes",
+        "type": "array",
+        "description": "One HomeKit switch per entry. Leave a field blank to use the default below it.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Switch Name",
+              "type": "string",
+              "required": true,
+              "description": "Shown in HomeKit, e.g. \"Front Door\" or \"Driveway Gate\". Must be unique."
+            },
+            "chimeUrl": {
+              "title": "Sound URL",
+              "type": "string",
+              "description": "HTTPS link to an MP3 or WAV. Blank uses the Sonos built-in tone."
+            },
+            "volume": {
+              "title": "Volume (0-100)",
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Blank uses the default volume below."
+            },
+            "priority": {
+              "title": "Priority",
+              "type": "string",
+              "enum": [
+                "HIGH",
+                "LOW"
+              ]
+            },
+            "autoOffSeconds": {
+              "title": "Auto-off delay (seconds)",
+              "type": "number"
+            },
+            "players": {
+              "title": "Speakers for this chime",
+              "type": "array",
+              "description": "Leave empty to use the default speakers below.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "title": "Name",
+                    "type": "string"
+                  },
+                  "playerId": {
+                    "title": "Player ID",
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "repeat": {
+              "title": "Repeat",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "Times to sound per press (1-5). Useful if your doorbell throttles repeat press events."
+            },
+            "repeatGapSeconds": {
+              "title": "Gap Between Repeats (seconds)",
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 30,
+              "description": "Blank uses the default below."
+            }
+          }
+        }
+      },
+      "players": {
+        "title": "Default Speakers",
+        "type": "array",
+        "description": "Used by any chime that doesn't list its own.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "playerId": {
+              "title": "Player ID",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "volume": {
+        "title": "Default Volume (0-100)",
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 100
+      },
+      "priority": {
+        "title": "Default Priority",
+        "type": "string",
+        "enum": [
+          "HIGH",
+          "LOW"
+        ],
+        "default": "HIGH"
+      },
+      "autoOffSeconds": {
+        "title": "Default Auto-off delay (seconds)",
+        "type": "number",
+        "default": 1
+      },
+      "chimeName": {
+        "title": "Single-chime name (legacy)",
+        "type": "string",
+        "description": "Only used when no Chimes are defined above."
+      },
+      "chimeUrl": {
+        "title": "Single-chime sound URL (legacy)",
+        "type": "string",
+        "description": "Only used when no Chimes are defined above."
+      },
+      "repeat": {
+        "title": "Default Repeat",
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 5,
+        "default": 1
+      },
+      "repeatGapSeconds": {
+        "title": "Default Gap Between Repeats (seconds)",
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 30,
+        "default": 4
+      }
+    }
+  },
+  "layout": [
+    {
+      "type": "fieldset",
+      "title": "Sonos Credentials",
+      "expandable": true,
+      "expanded": true,
+      "items": [
+        "clientId",
+        "clientSecret",
+        "refreshToken"
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Chimes",
+      "expandable": true,
+      "expanded": true,
+      "items": [
+        {
+          "key": "chimes",
+          "type": "array",
+          "buttonText": "Add Chime",
+          "items": [
+            "chimes[].name",
+            "chimes[].chimeUrl",
+            "chimes[].volume",
+            "chimes[].repeat",
+            "chimes[].repeatGapSeconds",
+            {
+              "key": "chimes[].players",
+              "type": "array",
+              "buttonText": "Add Speaker",
+              "items": [
+                "chimes[].players[].name",
+                "chimes[].players[].playerId"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "fieldset",
+      "title": "Defaults",
+      "expandable": true,
+      "expanded": false,
+      "items": [
+        {
+          "key": "players",
+          "type": "array",
+          "buttonText": "Add Speaker",
+          "items": [
+            "players[].name",
+            "players[].playerId"
+          ]
+        },
+        "volume",
+        "repeat",
+        "repeatGapSeconds",
+        "priority",
+        "autoOffSeconds",
+        "appId"
+      ]
+    }
+  ]
+}

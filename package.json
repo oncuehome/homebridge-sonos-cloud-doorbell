@@ -1,0 +1,41 @@
+{
+  "name": "homebridge-sonos-cloud-doorbell",
+  "version": "1.2.1",
+  "displayName": "Sonos Cloud Doorbell",
+  "description": "Doorbell chime on Sonos via the Cloud audioClip API \u2014 ducks and auto-restores playback instead of dropping it.",
+  "main": "src/index.js",
+  "license": "MIT",
+  "author": "On Cue Home",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell/issues"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/homebridge-sonos-cloud-doorbell#readme",
+  "engines": {
+    "node": ">=18",
+    "homebridge": ">=1.6.0"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "sonos",
+    "doorbell",
+    "audioclip",
+    "smart-home"
+  ],
+  "scripts": {
+    "authorize": "node scripts/authorize.js",
+    "list-players": "node scripts/list-players.js"
+  },
+  "files": [
+    "src",
+    "scripts",
+    "config.schema.json",
+    "README.md",
+    "HANDOVER.md",
+    "INSTALLER-NOTES.md",
+    "LICENSE"
+  ]
+}

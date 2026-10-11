@@ -1,6 +1,6 @@
 {
   "name": "homebridge-sonos-cloud-doorbell",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "displayName": "Sonos Cloud Doorbell",
   "description": "Doorbell chime on Sonos via the Cloud audioClip API \u2014 ducks and auto-restores playback instead of dropping it.",
   "main": "src/index.js",
@@ -34,8 +34,6 @@
     "scripts",
     "config.schema.json",
     "README.md",
-    "HANDOVER.md",
-    "INSTALLER-NOTES.md",
     "LICENSE"
   ]
 }

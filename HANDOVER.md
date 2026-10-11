@@ -25,11 +25,10 @@ Each announcement plays twice per press. That's deliberate — see
 
 Announcements play on all of these at once:
 
-- Family Room
-- Living
-- Peter's Office Ray
-- Gym
-- Move
+- Kitchen
+- Living Room
+- Office
+- Bedroom
 
 Where a room has a soundbar with surround speakers, the whole set plays it,
 not just the soundbar.
